@@ -1,3 +1,5 @@
+Best Output for 3 Layer CNN Model
+
 Fold 1/5
 Fold 1/5 - Epoch: 1, Train Loss: 14.983320236206055, Train Accuracy: 0.4046303604314654, Validation Accuracy: 0.49842767295597484
 Fold 1/5 - Epoch: 2, Train Loss: 1.3507047891616821, Train Accuracy: 0.6617556783302639, Validation Accuracy: 0.5833333333333334
