@@ -25,16 +25,23 @@ def get_prediction(image_bytes):
     tensor = custom_transform(image_bytes=image_bytes)
     outputs = model(tensor)
     _, predicted = torch.max(outputs, 1)
-    class_name = classes[predicted.item()]  # Map class index to class name
+    class_name = predicted
     return class_name
 
 @app.route('/predict', methods=['POST'])
 def predict():
     if request.method == 'POST':
         file = request.files['file']
-        img_bytes = file.read()
-        class_name = get_prediction(image_bytes=img_bytes)
-        return jsonify({'prediction': class_name})
+        if file:
+            img_bytes = file.read()
+            class_name = get_prediction(image_bytes=img_bytes)
+            return jsonify({'prediction': class_name})
+        else:
+            return jsonify({'error': 'No file part'})
+
+@app.route('/', methods=['GET'])
+def home():
+    return 'Welcome to the Image Prediction API.'
 
 if __name__ == '__main__':
     app.run()
